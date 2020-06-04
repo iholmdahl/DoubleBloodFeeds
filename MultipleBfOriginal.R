@@ -14,7 +14,7 @@ library(farver)
 ## IMPORT AND CLEAN BORDERS
 ##
 
-borders <- raster::shapefile("/Users/Inga/Documents/Harvard/Research/multiple.bf/spatial.data/Africa_SHP/Africa.shp")
+borders <- raster::shapefile("./data/Africa_SHP/Africa.shp")
 borders.df <- fortify(borders)
 
 ## country border file doesn't include south sudan, so needs to be added separately
@@ -26,7 +26,7 @@ SouthSudan.df <- fortify(SouthSudan)
 ## IMPORT AND CLEAN ANOPHELES EXTENT -- THIS WILL BE OUR REFERENCE MAP
 ##
 
-An.extent = raster('/Users/Inga/Documents/Harvard/Research/multiple.bf/spatial.data/2017_Anopheles_gambiae_complex.Mean_Decompressed.geotiff')
+An.extent = raster('./data/2017_Anopheles_gambiae_complex.Mean_Decompressed.geotiff')
 An.extent <- setMinMax(An.extent) %>%               
              mask(borders)       ## crops raster to extent of borders file (not mapping outside of Africa)
 
@@ -40,7 +40,7 @@ R0data <- An.extent %>%
 ## IMPORT AND CLEAN POPULATION DATA
 ##
 
-pop <- raster('/Users/Inga/Documents/Harvard/Research/multiple.bf/spatial.data/AFR_PPP_2015_adj_v2.tif')
+pop <- raster('./data/AFR_PPP_2015_adj_v2.tif')
 
 R0data.pop <- pop %>%
   setMinMax() %>%
@@ -56,7 +56,7 @@ R0data.pop <- pop %>%
 ## IMPORT AND CLEAN MONTHLY TEMPERATURE DATA
 ##
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_01.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_01.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -64,7 +64,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_01.tif") %>%
   rename(temp01=wc2.0_2.5m_tavg_01) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_02.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_02.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -72,7 +72,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_02.tif") %>%
   rename(temp02=wc2.0_2.5m_tavg_02) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_03.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_03.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -80,7 +80,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_03.tif") %>%
   rename(temp03=wc2.0_2.5m_tavg_03) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_04.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_04.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -88,7 +88,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_04.tif") %>%
   rename(temp04=wc2.0_2.5m_tavg_04) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_05.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_05.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -96,7 +96,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_05.tif") %>%
   rename(temp05=wc2.0_2.5m_tavg_05) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_06.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_06.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -104,7 +104,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_06.tif") %>%
   rename(temp06=wc2.0_2.5m_tavg_06) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_07.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_07.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -112,7 +112,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_07.tif") %>%
   rename(temp07=wc2.0_2.5m_tavg_07) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_08.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_08.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -120,7 +120,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_08.tif") %>%
   rename(temp08=wc2.0_2.5m_tavg_08) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_09.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_09.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -128,7 +128,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_09.tif") %>%
   rename(temp09=wc2.0_2.5m_tavg_09) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_10.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_10.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -136,7 +136,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_10.tif") %>%
   rename(temp10=wc2.0_2.5m_tavg_10) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_11.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_11.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -144,7 +144,7 @@ R0data<- raster("spatial.data/wc2.0_2.5m_tavg_11.tif") %>%
   rename(temp11=wc2.0_2.5m_tavg_11) %>%
   right_join(R0data)
 
-R0data<- raster("spatial.data/wc2.0_2.5m_tavg_12.tif") %>% 
+R0data<- raster("./data/wc2.0_2.5m_tavg_12.tif") %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
@@ -162,7 +162,7 @@ R0data <- R0data %>%
 ## SET UP CONTINENT BACKGROUND FOR PLOTS
 ##
 
-background <- setMinMax(raster("spatial.data/wc2.0_5m_tavg_01.tif")) %>% 
+background <- setMinMax(raster("./data/wc2.0_5m_tavg_01.tif")) %>% 
   mask(borders) %>%
   as.data.frame(xy=TRUE) %>%
   filter(!is.na(wc2.0_5m_tavg_01))  %>%

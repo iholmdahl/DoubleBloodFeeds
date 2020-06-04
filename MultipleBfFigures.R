@@ -6,7 +6,7 @@ R0data.original <- readRDS("R0data.rds")
 ## SET UP CONTINENT BACKGROUND FOR PLOTS
 ##
 
-background <- setMinMax(raster("spatial.data/wc2.0_5m_tavg_01.tif")) %>% 
+background <- setMinMax(raster("./data/wc2.0_5m_tavg_01.tif")) %>% 
   mask(borders) %>%
   as.data.frame(xy=TRUE) %>%
   filter(!is.na(wc2.0_5m_tavg_01))  %>%
