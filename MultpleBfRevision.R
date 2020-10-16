@@ -5,8 +5,12 @@ library(ggplot2)
 library(hablar)
 library(ggpubr)
 library(expss)
+library(rgdal)
+
+setwd("/Users/Inga/Documents/GitHub/DoubleBloodFeeds")
 
 source("./MordecaiR0.R")
+source("./temperature_data.R")
 
 ##################################################################################################################
 ## IMPORT AND CLEAN DATA
@@ -45,100 +49,100 @@ R0data <- pop %>%
 ## IMPORT AND CLEAN MONTHLY TEMPERATURE DATA
 #######################################################################################################
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_01.tif") %>% 
+R0data<- mean_jan %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp01=wc2.0_2.5m_tavg_01) %>%
+  rename(temp01=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_02.tif") %>% 
+R0data<- mean_feb %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp02=wc2.0_2.5m_tavg_02) %>%
+  rename(temp02=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_03.tif") %>% 
+R0data<- mean_march %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp03=wc2.0_2.5m_tavg_03) %>%
+  rename(temp03=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_04.tif") %>% 
+R0data<- mean_april %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp04=wc2.0_2.5m_tavg_04) %>%
+  rename(temp04=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_05.tif") %>% 
+R0data<- mean_may %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp05=wc2.0_2.5m_tavg_05) %>%
+  rename(temp05=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_06.tif") %>% 
+R0data<- mean_june%>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp06=wc2.0_2.5m_tavg_06) %>%
+  rename(temp06=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_07.tif") %>% 
+R0data<- mean_july %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp07=wc2.0_2.5m_tavg_07) %>%
+  rename(temp07=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_08.tif") %>% 
+R0data<- mean_aug %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp08=wc2.0_2.5m_tavg_08) %>%
+  rename(temp08=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_09.tif") %>% 
+R0data<- mean_sept %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp09=wc2.0_2.5m_tavg_09) %>%
+  rename(temp09=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_10.tif") %>% 
+R0data<- mean_oct %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp10=wc2.0_2.5m_tavg_10) %>%
+  rename(temp10=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_11.tif") %>% 
+R0data<- mean_nov %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp11=wc2.0_2.5m_tavg_11) %>%
+  rename(temp11=layer) %>%
   right_join(R0data)
 
-R0data<- raster("./data/wc2.0_2.5m_tavg_12.tif") %>% 
+R0data<- mean_dec %>% 
   setMinMax() %>%
   resample(An.extent, method = 'bilinear') %>%
   mask(An.extent) %>%                                        
   as.data.frame(xy=TRUE) %>%
-  rename(temp12=wc2.0_2.5m_tavg_12) %>%
+  rename(temp12=layer) %>%
   right_join(R0data)
 
 
@@ -146,10 +150,10 @@ R0data<- raster("./data/wc2.0_2.5m_tavg_12.tif") %>%
 ## SET UP CONTINENT BACKGROUND FOR PLOTS
 ##################################################################################################################
 
-background <- setMinMax(raster("./data/wc2.0_5m_tavg_01.tif")) %>% 
+background <- setMinMax(mean_jan) %>% 
   mask(borders) %>%
   as.data.frame(xy=TRUE) %>%
-  filter(!is.na(wc2.0_5m_tavg_01))  %>%
+  filter(!is.na(layer))  %>%
   mutate(continent.fill = 0)
  
 
@@ -185,40 +189,40 @@ R0data <- R0data %>%
 ## CALCULATE R0 RATIO FOR EACH MONTH
 ################################################################################################################
 
-R0data <- cbind(R0data, t(apply(R0data["temp01"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp01"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.01", "AdjustedR0.01", "R0Ratio.01")
 
-R0data <- cbind(R0data, t(apply(R0data["temp02"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp02"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.02", "AdjustedR0.02", "R0Ratio.02")
 
-R0data <- cbind(R0data, t(apply(R0data["temp03"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp03"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.03", "AdjustedR0.03", "R0Ratio.03")
 
-R0data <- cbind(R0data, t(apply(R0data["temp04"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp04"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.04", "AdjustedR0.04", "R0Ratio.04")
 
-R0data <- cbind(R0data, t(apply(R0data["temp05"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp05"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.05", "AdjustedR0.05", "R0Ratio.05")
 
-R0data <- cbind(R0data, t(apply(R0data["temp06"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp06"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.06", "AdjustedR0.06", "R0Ratio.06")
 
-R0data <- cbind(R0data, t(apply(R0data["temp07"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp07"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.07", "AdjustedR0.07", "R0Ratio.07")
 
-R0data <- cbind(R0data, t(apply(R0data["temp08"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp08"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.08", "AdjustedR0.08", "R0Ratio.08")
 
-R0data <- cbind(R0data, t(apply(R0data["temp09"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp09"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.09", "AdjustedR0.09", "R0Ratio.09")
 
-R0data <- cbind(R0data, t(apply(R0data["temp10"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp10"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.10", "AdjustedR0.10", "R0Ratio.10")
 
-R0data <- cbind(R0data, t(apply(R0data["temp11"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp11"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.11", "AdjustedR0.11", "R0Ratio.11")
 
-R0data <- cbind(R0data, t(apply(R0data["temp12"], MARGIN = 1, R0temp)))
+R0data <- cbind(R0data, t(apply(R0data["temp12"], MARGIN = 1, R0temp_new)))
 colnames(R0data)[(ncol(R0data)-2):ncol(R0data)] <- c("MordecaiR0.12", "AdjustedR0.12", "R0Ratio.12")
 
 
@@ -254,13 +258,13 @@ R0data$minRatio <- do.call(pmin, c(R0data[, c("R0Ratio.01", "R0Ratio.02", "R0Rat
 total.pop <- pop %>%
   setMinMax() %>%
   as.data.frame(xy=TRUE) %>%
-  select(AFR_PPP_2020_adj_v2) %>%
+  dplyr::select(AFR_PPP_2020_adj_v2) %>%
   sum(na.rm=TRUE)
 
 R0data %>%
   filter(Anopheles>0.05) %>%
   filter(count_months>0)%>%
-  select(population) %>%
+  dplyr::select(population) %>%
   sum(na.rm=TRUE) -> population.sum
 
 population.sum
@@ -269,26 +273,26 @@ population.sum
 R0data %>%
   filter(Anopheles>0.05) %>%
   filter(count_months>0)%>%
-  select(meanRatio) %>%
+  dplyr::select(meanRatio) %>%
   summary() -> meanSummary
   
 # average max R0 ratio
 R0data %>%
   filter(Anopheles>0.05) %>%
   filter(count_months>0)%>%
-  select(maxRatio) %>%
+  dplyr::select(maxRatio) %>%
   summary() -> maxSummary
 
 # average min R0 ratio
 R0data %>%
   filter(Anopheles>0.05) %>%
   filter(count_months>0)%>%
-  select(minRatio) %>%
+  dplyr::select(minRatio) %>%
   summary() -> minSummary
 
 
 ##############################################################################################################c
-## Figure 4 Revision
+## Figure 4 Resubmission
 ##############################################################################################################
 
 Months <- R0data %>%
@@ -334,7 +338,7 @@ ggsave("Figure4.pdf", width=8, height=4, units="in")
 
 Ratio.plot <- as.data.frame(matrix(data=NA, nrow=400, ncol=4))
 Ratio.plot$V1 <- (1:400)/10
-Ratio.plot[,2:4] <- t(apply(Ratio.plot[,1, drop=F], MARGIN = 1, R0temp))
+Ratio.plot[,2:4] <- t(apply(Ratio.plot[,1, drop=F], MARGIN = 1, R0temp_new))
 colnames(Ratio.plot) <- c("temperature", "BaselineR0", "AdjustedR0", "R0ratio")
 
 FigureS1.A <- Ratio.plot %>%
