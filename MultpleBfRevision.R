@@ -251,6 +251,13 @@ R0data$minRatio <- do.call(pmin, c(R0data[, c("R0Ratio.01", "R0Ratio.02", "R0Rat
                                               "R0Ratio.11", "R0Ratio.12")], list(na.rm=TRUE)))
 
 
+
+##############################################################################################################c
+## Save data file
+##############################################################################################################
+
+save(R0data, file=paste0(Sys.Date(),"_R0data"))
+
 ##############################################################################################################c
 ## Calculate summary measures 
 ##############################################################################################################
@@ -262,8 +269,8 @@ total.pop <- pop %>%
   sum(na.rm=TRUE)
 
 R0data %>%
-  filter(Anopheles>0.05) %>%
-  filter(count_months>0)%>%
+  #filter(Anopheles>0.05) %>%
+  #filter(count_months>0)%>%
   dplyr::select(population) %>%
   sum(na.rm=TRUE) -> population.sum
 
@@ -329,7 +336,7 @@ MEAN  <- R0data %>%
   theme(text=element_text(size=14,  family="sans"))
 
 ggarrange(Months, MEAN, ncol=2, nrow=1)
-ggsave("Figure4.pdf", width=8, height=4, units="in")
+ggsave(paste0(Sys.Date(),"_Fig4.pdf"), width=8, height=4, units="in")
 
 
 ##############################################################################################################c
@@ -365,7 +372,7 @@ FigureS1.B <- Ratio.plot %>%
   geom_line(aes(x=temperature, y=R0ratio, color="Ratio")) + 
   theme_classic() +
   scale_x_continuous(name = "Temperature (C)", breaks=c(25, 29))+
-  scale_y_continuous(breaks=c(1,1.1,1.2, 1.3), labels=c("0", "10%", "20%",), name="R0 Increase")+
+  scale_y_continuous(breaks=c(1,1.1,1.2, 1.3), labels=c("0", "10%", "20%", "30%"), name="R0 Increase")+
   coord_cartesian(ylim=c(1, 1.4), xlim =c(16, 36))+
   scale_color_manual(name = "",
                      breaks = c("Baseline", "Adjusted", "Ratio"),
@@ -375,6 +382,12 @@ ggarrange(FigureS1.A, FigureS1.B, nrow=2, ncol=1)
 ggsave("FigureS1.pdf", units=c("in"), height=6, width =6)
 
 
+
+Ratio.plot %>%
+  filter(R0ratio<3) %>%
+  ggplot() +
+  geom_line(aes(x=temperature, y=AdjustedR0, color="Adjusted"))
+  
 
 ##############################################################################################################c
 ## Supplementary figure 2 monthly plots

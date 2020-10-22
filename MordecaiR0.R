@@ -61,6 +61,8 @@ R0temp_new <- function (T) {
   # returns R0 Mordecai, R0 double blood, ratio R0 double blood over R0 Mordecai
 }
 
+R0temp_new(21)
+
 
 R0temppop <- function (T, N) {
   eps = 1e-12;
