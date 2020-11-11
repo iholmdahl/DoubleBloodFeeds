@@ -44,7 +44,7 @@ R0data <- pop %>%
 
 
 #######################################################################################################
-## IMPORT AND CLEAN MONTHLY TEMPERATURE DATA
+## ADD MONTHLY TEMPERATURE DATA TO SPATIAL DATASET
 #######################################################################################################
 
 R0data<- mean_jan %>% 
@@ -238,11 +238,12 @@ R0data$minRatio <- do.call(pmin, c(R0data[, c("R0Ratio.01", "R0Ratio.02", "R0Rat
                                               "R0Ratio.11", "R0Ratio.12")], list(na.rm=TRUE)))
 
 
-
 ##############################################################################################################c
 ## Calculate summary measures 
 ##############################################################################################################
+
 # first restrict to relevant area: 
+
 total.pop <- pop %>%
   setMinMax() %>%
   as.data.frame(xy=TRUE) %>%
@@ -255,7 +256,6 @@ R0data %>%
   dplyr::select(population) %>%
   sum(na.rm=TRUE) -> population.sum
 
-population.sum
 
 # mean R0 ratio (and min and max for the average)
 R0data %>%
