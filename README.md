@@ -10,14 +10,13 @@ MordecaiR0.R /n
 Function for original R0 temperature function from Mordecai et al.** and updated R0 temperature function using our data. Required by MultipleBf.R
 
 temperature_data.R
-Summarized temperature data from [Terraclimate](http://www.climatologylab.org/terraclimate.html)
+Summarized temperature data from [Terraclimate](http://www.climatologylab.org/terraclimate.html). Required by MultipleBf.R
 
 MultipleBf.R
-Data layering and and calculated changes.  Required by MultipleBf.R
+Data layering and and analyses.  Required by MultipleBfFigures.R
 
 MultipleBfFigures.R
-Code for figures in main text and supplement
-
+Code for figures in main text and supplement.
 
 
 * Villena OC, Ryan SJ, Murdock CC, Johnson LR. Temperature impacts the transmission of malaria parasites by Anopheles gambiae and Anopheles stephensi mosquitoes. 2020. p. 2020.07.08.194472. doi:10.1101/2020.07.08.194472
