@@ -1,11 +1,6 @@
-library(raster)
-library(sp)
 library(dplyr)
 library(ggplot2)
-library(hablar)
 library(ggpubr)
-library(expss)
-library(rgdal)
 
 ##################################################################################################################
 ## SET UP CONTINENT BACKGROUND FOR PLOTS
@@ -60,7 +55,7 @@ ggsave(paste0(Sys.Date(),"_Fig4.pdf"), width=8, height=4, units="in")
 
 
 ##############################################################################################################c
-## Figure S3 (ratio vs temperature)
+## Figure S4 (ratio vs temperature)
 ##############################################################################################################
 
 Ratio.plot <- as.data.frame(matrix(data=NA, nrow=400, ncol=4))
@@ -99,18 +94,11 @@ Figure.B <- Ratio.plot %>%
                      values = c(Baseline = "#FCA636FF", Adjusted = "#B12A90FF", Ratio= "black"))
 
 ggarrange(Figure.A, Figure.B, nrow=2, ncol=1)
-ggsave("FigureS1.pdf", units=c("in"), height=6, width =6)
-
-
-
-Ratio.plot %>%
-  filter(R0ratio<3) %>%
-  ggplot() +
-  geom_line(aes(x=temperature, y=AdjustedR0, color="Adjusted"))
+ggsave("FigureS4.pdf", units=c("in"), height=6, width =6)
 
 
 ##############################################################################################################c
-## Figure S4 (monthly maps)
+## Figure S5 (monthly maps)
 ##############################################################################################################
 
 
@@ -343,6 +331,6 @@ DEC <- R0data %>%
   theme(legend.key.height = unit(2, "cm"))
 
 ggarrange(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC, ncol=4, nrow=3, common.legend = TRUE, legend="right")
-ggsave("FigureS2.pdf", width=7.5, height=6.25, units="in")
+ggsave("FigureS5.pdf", width=7.5, height=6.25, units="in")
 
 
