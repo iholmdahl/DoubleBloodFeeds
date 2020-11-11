@@ -2,8 +2,6 @@ library(raster)
 library(ncdf4)
 library(rasterVis)
 
-setwd("/Users/Inga/Documents/GitHub/DoubleBloodFeeds")
-
 max_2010 <- brick("temp_data/TerraClimate_tmax_2010.nc")
 min_2010 <- brick("temp_data/TerraClimate_tmin_2010.nc")
 
