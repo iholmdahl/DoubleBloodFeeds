@@ -7,16 +7,16 @@ Anopheles_EFD.R
 /n Digitized data from Villena et al.* and fit quadratic function as in Mordecai et al.**
 
 MordecaiR0.R /n
-Function for original R0 temperature function from Mordecai et al.** and updated R0 temperature function using our data.
+Function for original R0 temperature function from Mordecai et al.** and updated R0 temperature function using our data. Required by MultipleBf.R
 
 temperature_data.R
-summarizing temperature data from XXX
+Summarized temperature data from [Terraclimate](http://www.climatologylab.org/terraclimate.html)
 
 MultipleBf.R
-stacked data layers and calculated changes
+Data layering and and calculated changes.  Required by MultipleBf.R
 
 MultipleBfFigures.R
-Code for paper figures
+Code for figures in main text and supplement
 
 
 
